@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>NAP Consulting | 10 ans d'expertise - Tarifs & Services</title>
+  <!-- Tailwind CSS + Boxicons + Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    * { font-family: 'Space Grotesk', sans-serif; }
+    .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+    .animate-float-slow { animation: floatSlow 6s ease-in-out infinite; }
+    @keyframes floatSlow { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-15px)} }
+    .gradient-text { background: linear-gradient(135deg, #EF4444, #3B82F6, #EF4444); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shineText 4s linear infinite; }
+    @keyframes shineText { 0%{background-position:0% center} 100%{background-position:200% center} }
+    .social-icon { transition: all 0.3s ease; }
+    .social-icon:hover { transform: translateY(-5px) scale(1.1); }
+    .hover-lift { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .hover-lift:hover { transform: translateY(-6px); box-shadow: 0 20px 25px -12px rgba(0,0,0,0.15); }
+    .modal-backdrop { background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
+    .modal-container { animation: modalSlideUp 0.3s ease-out; }
+    @keyframes modalSlideUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+    .flag-float { animation: flagFloat 4s ease-in-out infinite; }
+    @keyframes flagFloat { 0%,100%{transform:translateY(0px) rotate(0deg)} 50%{transform:translateY(-12px) rotate(2deg)} }
+    .pricing-card {
+      transition: all 0.3s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 40px -20px rgba(0,0,0,0.25);
+    }
+    .badge-popular {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+    }
+	* { font-family: 'Space Grotesk', sans-serif; }
+    .gradient-text {
+      background: linear-gradient(135deg, #EF4444, #3B82F6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    /* Styles pour le carrousel de témoignages */
+    .testimonial-slider {
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .testimonial-card {
+      flex-shrink: 0;
+      width: 100%;
+      padding: 0 1rem;
+    }
+    @media (min-width: 768px) {
+      .testimonial-card {
+        width: 50%;
+      }
+    }
+    @media (min-width: 1024px) {
+      .testimonial-card {
+        width: 33.333333%;
+      }
+    }
+    .testimonial-card-inner {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.75rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .testimonial-card-inner:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.2);
+    }
+    .slider-dot {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .slider-dot.active {
+      background: linear-gradient(135deg, #EF4444, #3B82F6);
+      width: 2rem;
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+    .quote-icon {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 overflow-x-hidden">
+
+  <!-- MODAL MODERNE -->
+  <div id="serviceModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 transition-all">
+    <div class="modal-backdrop absolute inset-0" id="modalBackdrop"></div>
+    <div class="modal-container relative bg-white rounded-3xl max-w-lg w-full shadow-2xl overflow-hidden">
+      <div class="bg-gradient-to-r from-red-600 to-blue-600 px-6 py-4 flex justify-between items-center">
+        <h3 class="text-xl font-bold text-white" id="modalTitle">Titre Service</h3>
+        <button id="closeModalBtn" class="text-white text-2xl hover:opacity-80">&times;</button>
+      </div>
+      <div class="p-6" id="modalContent"><p class="text-gray-600">Contenu détaillé...</p></div>
+      <div class="px-6 pb-6"><button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 rounded-xl transition" id="modalCloseFooter">Fermer</button></div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-sm">
+    <div class="container mx-auto px-6 lg:px-8 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="relative group cursor-pointer">
+          <div class="absolute -inset-1 bg-gradient-to-r from-red-500 to-blue-600 rounded-2xl blur-md opacity-70 group-hover:opacity-100 transition"></div>
+          <div class="relative bg-white rounded-2xl px-4 py-2 flex items-center gap-2">
+            <span class="text-red-600 font-black text-2xl">NAP</span>
+            <span class="font-bold text-gray-800 text-lg">Consulting</span>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center gap-1 ml-2">
+          <span class="bg-yellow-100 text-yellow-800 text-[11px] font-bold px-2 py-1 rounded-full">⭐ 10+ ans d'expertise</span>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-8 font-semibold">
+        <a href="#a-propos" class="hover:text-red-500 transition">À propos</a>
+        <a href="#procedures" class="hover:text-blue-500 transition">Procédures</a>
+        <a href="#tarifs" class="hover:text-red-500 transition">Tarifs</a>
+        <a href="#services" class="hover:text-blue-500 transition">Services</a>
+        <a href="#temoignages" class="hover:text-red-500 transition">Réussites</a>
+        <a href="#faq" class="hover:text-blue-500 transition">FAQ</a>
+        <a href="#contact" class="bg-gradient-to-r from-red-500 to-blue-500 text-white px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all">Évaluation offerte</a>
+      </div>
+      <button id="mobileMenuBtn" class="md:hidden text-2xl"><i class="bx bx-menu"></i></button>
+    </div>
+    <div id="mobileMenuPanel" class="hidden md:hidden bg-white/95 backdrop-blur-lg px-6 pb-5 pt-2 flex flex-col gap-3 border-t">
+      <a href="#a-propos" class="py-2 font-medium">À propos</a><a href="#procedures" class="py-2 font-medium">Procédures</a><a href="#tarifs" class="py-2 font-medium">Tarifs</a><a href="#services" class="py-2 font-medium">Services</a><a href="#temoignages" class="py-2 font-medium">Réussites</a><a href="#faq" class="py-2 font-medium">FAQ</a>
+      <a href="#contact" class="bg-red-600 text-white text-center rounded-full py-2 font-bold">Évaluation gratuite</a>
+    </div>
+  </nav>
+
+  <main class="relative">
+    <!-- HERO SECTION -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-red-50 via-white to-blue-50">
+      <div class="absolute top-40 -right-20 w-96 h-96 bg-red-300/30 rounded-full blur-3xl animate-float-slow"></div>
+      <div class="absolute bottom-20 -left-20 w-80 h-80 bg-blue-300/30 rounded-full blur-3xl animate-float-slow"></div>
+      <div class="container mx-auto px-6 lg:px-8 py-16 lg:py-20 relative">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="flex-1 text-center lg:text-left" data-aos="fade-right">
+            </br>
+            <div class="flex flex-wrap justify-center lg:justify-start gap-3 mb-6">
+              <span class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-gray-200 rounded-full px-4 py-1.5 text-sm font-bold shadow-sm"><i class="bx bxs-map text-red-500"></i> Canada | France | USA | Europe</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black leading-tight tracking-tight">Votre pont vers <br><span class="gradient-text">le monde académique & pro</span></h1>
+            <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto lg:mx-0">10 ans à transformer les rêves d'études et d'immigration en réussites concrètes. CAQ, permis d'études, PVT, PPTQ, VLS-TS, et visas USA/Europe.</p>
+            <div class="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start">
+              <a href="#contact" class="bg-gradient-to-r from-red-600 to-blue-600 hover:shadow-2xl text-white font-bold px-8 py-3 rounded-full transition-all flex items-center gap-2"><i class="bx bx-calendar-check"></i> Diagnostic gratuit</a>
+              <a href="#procedures" class="border-2 border-gray-300 hover:border-red-400 bg-white px-7 py-3 rounded-full font-semibold transition">Explorer les visas</a>
+            </div>
+            <div class="flex gap-8 mt-12 justify-center lg:justify-start">
+              <div><span class="font-black text-2xl text-red-600">2 340+</span><p class="text-sm">Dossiers réussis</p></div>
+              <div><span class="font-black text-2xl text-blue-600">98%</span><p class="text-sm">Satisfaction</p></div>
+              <div><span class="font-black text-2xl text-amber-600">10 ans</span><p class="text-sm">d'expérience</p></div>
+            </div>
+          </div>
+          <div class="flex-1 flex justify-center" data-aos="fade-left">
+            <div class="hero-flag-group relative w-80 h-80 lg:w-[480px] lg:h-[480px] flex items-center justify-center">
+              <div class="absolute inset-0 bg-gradient-to-tr from-red-200/40 to-blue-200/40 rounded-full blur-2xl animate-float-slow"></div>
+              <div class="absolute flag-float" style="top: 5%; left: 5%; width: 100px;"><img src="https://flagcdn.com/w160/fr.png" class="w-full rounded-2xl shadow-2xl border-2 border-white/80" alt="France"></div>
+              <div class="absolute flag-float" style="bottom: 10%; right: 0%; width: 110px; animation-delay:0.5s"><img src="https://flagcdn.com/w160/ca.png" class="w-full rounded-2xl shadow-2xl border-2 border-white/80" alt="Canada"></div>
+              <div class="absolute flag-float" style="top: 20%; right: 10%; width: 90px; animation-delay:1s"><img src="https://flagcdn.com/w160/us.png" class="w-full rounded-2xl shadow-2xl border-2 border-white/80" alt="USA"></div>
+              <div class="absolute flag-float" style="bottom: 35%; left: -3%; width: 85px; animation-delay:0.2s"><img src="https://flagcdn.com/w160/eu.png" class="w-full rounded-xl shadow-xl" alt="Europe"></div>
+              <div class="relative z-10 glass-card rounded-full p-5 backdrop-blur-md bg-white/70 shadow-2xl w-40 h-40 lg:w-48 lg:h-48 flex flex-col items-center justify-center animate-float-slow">
+                <i class='bx bx-globe text-5xl text-red-500'></i>
+                <span class="font-black text-2xl text-blue-600">10+</span>
+                <p class="text-xs font-bold text-center">Années d'excellence</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+	 <section id="a-propos" class="py-20 bg-white">
+      <div class="container mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div data-aos="fade-right">
+            <div class="inline-flex bg-red-100 text-red-700 px-4 py-1.5 rounded-full text-sm font-bold mb-4"><i class="bx bx-buildings mr-1"></i> Notre héritage</div>
+            <h2 class="text-4xl md:text-5xl font-black">NAP Consulting, <span class="gradient-text">plus de 10 ans</span> à vos côtés</h2>
+            <p class="text-gray-600 text-lg mt-4 leading-relaxed">Fondée par des experts binationaux, NAP Consulting accompagne depuis 2014 les étudiants, jeunes diplômés et professionnels dans leurs projets d'études et d'immigration au Canada, France, USA et Europe. Notre équipe cumule une connaissance approfondie des procédures CAQ, Campus France, ICEF, et des systèmes d'admission.</p>
+            <div class="mt-6 grid grid-cols-2 gap-4">
+              <div class="flex items-center gap-2"><i class='bx bx-check-circle text-red-500 text-xl'></i><span>+2 300 dossiers traités</span></div>
+              <div class="flex items-center gap-2"><i class='bx bx-check-circle text-blue-500 text-xl'></i><span>98% de taux de succès</span></div>
+              <div class="flex items-center gap-2"><i class='bx bx-check-circle text-amber-500 text-xl'></i><span>Équipe multilingue</span></div>
+              <div class="flex items-center gap-2"><i class='bx bx-check-circle text-emerald-500 text-xl'></i><span>Suivi personnalisé 24/7</span></div>
+            </div>
+            <div class="mt-8 p-5 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl border-l-4 border-red-500">
+              <p class="italic text-gray-600">"Notre mission : transformer les ambitions en visas obtenus, grâce à une stratégie sur-mesure et une expertise terrain inégalée."</p>
+              <p class="font-bold mt-2">Amadou Ndiaye, Directeur Associé</p>
+            </div>
+          </div>
+          <div data-aos="fade-left" class="relative">
+            <div class="bg-gradient-to-tr from-red-100 to-blue-100 rounded-3xl p-1 shadow-2xl">
+              <img src="https://placehold.co/600x500/F1F5F9/2C3E50?text=Équipe+NAP+Consulting&font=montserrat" class="rounded-3xl w-full object-cover shadow-lg" alt="équipe NAP">
+            </div>
+            <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-3 shadow-xl flex items-center gap-3">
+              <i class='bx bx-trophy text-4xl text-yellow-500'></i>
+              <div><span class="font-black text-xl">10+ ans</span><p class="text-xs">d'expérience transatlantique</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION TARIFS MODERNE -->
+    <section id="tarifs" class="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <div class="container mx-auto px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
+          <span class="bg-red-100 text-red-700 px-5 py-1.5 rounded-full text-sm font-bold"><i class="bx bx-euro"></i> Investissement transparent</span>
+          <h2 class="text-4xl md:text-5xl font-black mt-4">Nos <span class="gradient-text">forfaits compétitifs</span></h2>
+          <p class="text-gray-500 text-lg mt-3">Honoraires d'accompagnement (hors frais d'État, Campus France, IRCC, etc.)</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- Carte France - Visa Étudiant -->
+          <div class="pricing-card relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 text-white">
+              <div class="flex items-center gap-2"><i class="bx bx-french-fries text-2xl"></i><h3 class="text-xl font-bold">🇫🇷 France - Visa Étudiant</h3></div>
+            </div>
+            <div class="p-6">
+              <div class="text-center mb-4">
+                <span class="text-4xl font-black text-gray-800">100 000 FCFA</span>
+                <p class="text-sm text-gray-500 mt-1">Hors frais Campus France & frais d'État</p>
+              </div>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Accompagnement Campus France (EEF)</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Préparation dossier VLS-TS</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Aide à la rédaction lettre de motivation</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Simulation entretien Campus France</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Suivi jusqu'à l'obtention du visa</div>
+                <div class="flex items-center gap-2 text-sm text-amber-600"><i class="bx bx-info-circle"></i> + Frais Campus France : ~50 000 FCFA</div>
+              </div>
+              <a href="#contact" class="block w-full text-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold py-3 rounded-xl hover:shadow-lg transition">Choisir ce forfait</a>
+            </div>
+          </div>
+
+          <!-- Carte Canada - Visa Étudiant / CAQ -->
+          <div class="pricing-card relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+            <div class="absolute badge-popular"><span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">⭐ Populaire</span></div>
+            <div class="bg-gradient-to-r from-red-600 to-rose-600 px-6 py-4 text-white">
+              <div class="flex items-center gap-2"><i class="bx bxs-flag-alt text-2xl"></i><h3 class="text-xl font-bold">🇨🇦 Canada - Visa Étudiant</h3></div>
+            </div>
+            <div class="p-6">
+              <div class="text-center mb-4">
+                <span class="text-4xl font-black text-gray-800">250 000 FCFA</span>
+                <p class="text-sm text-gray-500 mt-1">Hors frais CAQ, PAL & IRCC</p>
+              </div>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Admission dans un DLI / Université</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Préparation dossier CAQ complet</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Assistance demande Permis d'études (IRCC)</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Aide justificatifs financiers</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Suivi personnalisé jusqu'à l'obtention</div>
+                <div class="flex items-center gap-2 text-sm text-amber-600"><i class="bx bx-info-circle"></i> + Frais CAQ ~ 40 000 FCFA + IRCC ~ 80 000 FCFA</div>
+              </div>
+              <a href="#contact" class="block w-full text-center bg-gradient-to-r from-red-500 to-rose-500 text-white font-bold py-3 rounded-xl hover:shadow-lg transition">Choisir ce forfait</a>
+            </div>
+          </div>
+
+          <!-- Carte Visa Visiteur / Regroupement / PPTQ -->
+          <div class="pricing-card relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-4 text-white">
+              <div class="flex items-center gap-2"><i class="bx bx-shield-alt-2 text-2xl"></i><h3 class="text-xl font-bold">Visa Visiteur • Regroupement • PPTQ</h3></div>
+            </div>
+            <div class="p-6">
+              <div class="text-center mb-4">
+                <span class="text-3xl font-black text-gray-800">2 500 000 FCFA</span>
+                <p class="text-sm text-gray-500">à <span class="font-bold text-red-600">5 000 000 FCFA</span></p>
+                <p class="text-xs text-gray-400 mt-1">Tarif sur mesure selon complexité du dossier</p>
+              </div>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Visa Visiteur Canada / France</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Regroupement familial (Canada/France)</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> PPTQ - Programme des travailleurs qualifiés Québec</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Résidence permanente (Arrima, CSQ, fédéral)</div>
+                <div class="flex items-center gap-2 text-sm"><i class="bx bx-check-circle text-green-500"></i> Cas complexes, refus, réorientations</div>
+                <div class="flex items-center gap-2 text-sm text-amber-600"><i class="bx bx-calculator"></i> Tarif à discuter selon profil</div>
+              </div>
+              <a href="#contact" class="block w-full text-center bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 rounded-xl hover:shadow-lg transition">Demander un devis personnalisé</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Note supplémentaire sur les frais -->
+        <div class="text-center mt-10 p-5 bg-gray-100 rounded-2xl max-w-3xl mx-auto">
+          <div class="flex items-center justify-center gap-2 text-gray-600"><i class="bx bx-info-circle text-blue-500"></i><p class="text-sm">* Tous nos tarifs s'entendent hors frais d'État, frais consulaires, frais Campus France, CAQ, IRCC, etc. Ces frais sont à régler directement par le client auprès des autorités. Une facture détaillée vous sera fournie.</p></div>
+          <div class="flex flex-wrap justify-center gap-4 mt-4 text-xs text-gray-500">
+            <span>✅ Paiement sécurisé</span>
+            <span>✅ Devis gratuit</span>
+            <span>✅ Engagement de résultat (conditions)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCÉDURES VISA -->
+    <section id="procedures" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
+      <div class="container mx-auto px-6 lg:px-8">
+        <div class="text-center mb-12"><span class="bg-white/80 text-gray-700 px-5 py-1.5 rounded-full text-sm font-bold"><i class="bx bx-file-find"></i> Procédures simplifiées</span><h2 class="text-4xl font-black mt-4">Études & visas : <span class="gradient-text">guide par destination</span></h2></div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="visa-card-modern rounded-2xl p-6 shadow-lg border border-white/50 bg-white/80 hover-lift cursor-pointer" data-modal-title="🍁 Canada - Procédure" data-modal-desc="<strong>Étapes clés :</strong><br>Admission DLI, CAQ (Québec) ou PAL, demande IRCC. PVT via IEC, PPTQ via Arrima. Tarif accompagnement : 250 000 FCFA."><i class='bx bxs-flag-alt text-red-500 text-4xl'></i><h3 class="text-xl font-bold mt-2">🇨🇦 Canada</h3><p class="text-sm">CAQ, PVT, PPTQ, permis études</p><span class="inline-block mt-2 text-xs font-bold text-red-600">250 000 FCFA</span></div>
+          <div class="visa-card-modern rounded-2xl p-6 shadow-lg border border-white/50 bg-white/80 hover-lift cursor-pointer" data-modal-title="🇫🇷 France - VLS-TS" data-modal-desc="<strong>Campus France :</strong> Procédure EEF, entretien, VLS-TS. Tarif accompagnement : 100 000 FCFA hors frais Campus France."><i class='bx bx-french-fries text-blue-500 text-4xl'></i><h3 class="text-xl font-bold mt-2">🇫🇷 France</h3><p class="text-sm">VLS-TS, Campus France</p><span class="inline-block mt-2 text-xs font-bold text-blue-600">100 000 FCFA</span></div>
+          <div class="visa-card-modern rounded-2xl p-6 shadow-lg border border-white/50 bg-white/80 hover-lift cursor-pointer" data-modal-title="🇺🇸 USA - F-1" data-modal-desc="Visa F-1, I-20, entretien consulaire. Tarif sur mesure."><i class='bx bxs-flag-checkered text-purple-500 text-4xl'></i><h3 class="text-xl font-bold mt-2">🇺🇸 USA</h3><p class="text-sm">F-1, J-1, I-20</p><span class="inline-block mt-2 text-xs font-bold text-purple-600">Sur devis</span></div>
+          <div class="visa-card-modern rounded-2xl p-6 shadow-lg border border-white/50 bg-white/80 hover-lift cursor-pointer" data-modal-title="🇪🇺 Europe" data-modal-desc="Allemagne (Sperrkonto), Suisse (permis B), Belgique, Pays-Bas. Tarif sur mesure."><i class='bx bxs-euro text-emerald-500 text-4xl'></i><h3 class="text-xl font-bold mt-2">🇪🇺 Europe</h3><p class="text-sm">Allemagne, Suisse, Pays-Bas</p><span class="inline-block mt-2 text-xs font-bold text-emerald-600">Sur devis</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-20 bg-white">
+      <div class="container mx-auto px-6 lg:px-8">
+        <div class="text-center mb-16"><span class="bg-red-100 text-red-700 px-5 py-1.5 rounded-full text-sm font-bold">Accompagnement sur-mesure</span><h2 class="text-4xl md:text-5xl font-black mt-4">Nos services <span class="gradient-text">clé en main</span></h2></div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="service-card bg-white rounded-2xl p-6 shadow-xl border hover-lift cursor-pointer" data-modal-title="🎓 Admission & CAQ express" data-modal-desc="Préparation CAQ, choix d'établissement. Tarif : 250 000 FCFA"><i class='bx bx-map text-red-500 text-4xl'></i><h3 class="text-xl font-bold mt-3">Admission Canada</h3><p class="text-gray-500">250 000 FCFA</p></div>
+          <div class="service-card bg-white rounded-2xl p-6 shadow-xl border hover-lift cursor-pointer" data-modal-title="✈️ PVT & Permis travail" data-modal-desc="PVT Canada, accompagnement IEC. Tarif : 250 000 FCFA"><i class='bx bx-passport text-blue-500 text-4xl'></i><h3 class="text-xl font-bold mt-3">PVT & Working Holiday</h3><p class="text-gray-500">250 000 FCFA</p></div>
+          <div class="service-card bg-white rounded-2xl p-6 shadow-xl border hover-lift cursor-pointer" data-modal-title="🏆 Résidence permanente PPTQ" data-modal-desc="Évaluation Arrima, CSQ, fédéral. Tarif : 2 500 000 - 5 000 000 FCFA selon profil"><i class='bx bx-trending-up text-indigo-500 text-4xl'></i><h3 class="text-xl font-bold mt-3">PPTQ & RP</h3><p class="text-gray-500">2,5M - 5M FCFA</p></div>
+          <div class="service-card bg-white rounded-2xl p-6 shadow-xl border hover-lift cursor-pointer" data-modal-title="🇫🇷 France études & VLS-TS" data-modal-desc="Campus France, procédure EEF. Tarif : 100 000 FCFA"><i class='bx bx-french-fries text-blue-500 text-4xl'></i><h3 class="text-xl font-bold mt-3">Visa France</h3><p class="text-gray-500">100 000 FCFA</p></div>
+          <div class="service-card bg-white rounded-2xl p-6 shadow-xl border hover-lift cursor-pointer" data-modal-title="🇺🇸 USA & Europe" data-modal-desc="Visa F-1, Allemagne Sperrkonto, Suisse. Tarif sur devis"><i class='bx bx-globe text-purple-500 text-4xl'></i><h3 class="text-xl font-bold mt-3">USA & Europe</h3><p class="text-gray-500">Sur devis</p></div>
+          <div class="service-card bg-white rounded-2xl p-6 shadow-xl border hover-lift cursor-pointer" data-modal-title="📋 Visa Visiteur / Regroupement" data-modal-desc="Visa visiteur Canada/France, regroupement familial. Tarif : 2,5M - 5M FCFA"><i class='bx bx-chalkboard text-amber-500 text-4xl'></i><h3 class="text-xl font-bold mt-3">Visiteur & Regroupement</h3><p class="text-gray-500">2,5M - 5M FCFA</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÉMOIGNAGES -->
+	 <section id="temoignages" class="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden">
+    <!-- Éléments décoratifs -->
+    <div class="absolute top-0 left-0 w-72 h-72 bg-red-100/30 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl"></div>
+    
+    <div class="container mx-auto px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
+        <div class="inline-flex items-center gap-2 bg-red-100 text-red-700 px-4 py-1.5 rounded-full text-sm font-bold mb-4">
+          <i class="bx bxs-heart text-red-500"></i>
+          <span>Ils parlent de nous</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black mb-4">
+          Plus de <span class="gradient-text">2 300 clients</span><br>
+          nous font confiance
+        </h2>
+        <p class="text-gray-500 text-lg">Découvrez les retours de nos clients satisfaits à travers le monde</p>
+      </div>
+
+      <!-- Carrousel de témoignages -->
+      <div class="testimonial-slider relative max-w-7xl mx-auto">
+        <div class="testimonial-track" id="testimonialTrack">
+          <!-- Témoignage 1 - Canada CAQ -->
+          <div class="testimonial-card">
+            <div class="testimonial-card-inner">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white text-xl font-bold shadow-lg">S.M</div>
+                <div>
+                  <h4 class="font-bold text-lg">Sarah M.</h4>
+                  <div class="flex items-center gap-1 text-yellow-400 text-sm">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+                  </div>
+                  <p class="text-xs text-gray-400">Étudiante • Université Laval, Canada</p>
+                </div>
+              </div>
+              <i class='bx bxs-quote-left text-4xl text-red-200 mb-3 quote-icon'></i>
+              <p class="text-gray-600 italic leading-relaxed">“NAP Consulting m'a accompagnée pour ma CAQ et mon permis d'études. En 3 semaines seulement, j'ai reçu mon certificat ! Aujourd'hui, je poursuis mon rêve à l'UQAM. Un grand merci à toute l'équipe pour leur réactivité et leur professionnalisme.”</p>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                <span class="text-xs text-gray-400"><i class="bx bx-calendar"></i> Janvier 2025</span>
+                <span class="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full"><i class="bx bx-check-circle"></i> CAQ obtenue</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Témoignage 2 - France VLS-TS -->
+          <div class="testimonial-card">
+            <div class="testimonial-card-inner">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-xl font-bold shadow-lg">L.P</div>
+                <div>
+                  <h4 class="font-bold text-lg">Lucas P.</h4>
+                  <div class="flex items-center gap-1 text-yellow-400 text-sm">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+                  </div>
+                  <p class="text-xs text-gray-400">Master • Sorbonne Université, France</p>
+                </div>
+              </div>
+              <i class='bx bxs-quote-left text-4xl text-blue-200 mb-3 quote-icon'></i>
+              <p class="text-gray-600 italic leading-relaxed">“Un accompagnement parfait pour mon dossier Campus France et mon VLS-TS vers la Sorbonne. L'équipe a su répondre à toutes mes questions et m'a aidé à préparer mon entretien. Un gain de temps énorme et une sérénité totale. Je recommande vivement !”</p>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                <span class="text-xs text-gray-400"><i class="bx bx-calendar"></i> Septembre 2024</span>
+                <span class="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full"><i class="bx bx-check-circle"></i> VLS-TS obtenu</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Témoignage 3 - USA F-1 -->
+          <div class="testimonial-card">
+            <div class="testimonial-card-inner">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold shadow-lg">E.W</div>
+                <div>
+                  <h4 class="font-bold text-lg">Emma W.</h4>
+                  <div class="flex items-center gap-1 text-yellow-400 text-sm">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+                  </div>
+                  <p class="text-xs text-gray-400">Bachelor • NYU, États-Unis</p>
+                </div>
+              </div>
+              <i class='bx bxs-quote-left text-4xl text-purple-200 mb-3 quote-icon'></i>
+              <p class="text-gray-600 italic leading-relaxed">“Grâce à l'expertise de NAP Consulting, j'ai obtenu mon visa F-1 du premier coup ! Le coaching pour l'entretien consulaire a été déterminant. Équipe réactive, à l'écoute et très professionnelle. Je me sens entre de bonnes mains.”</p>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                <span class="text-xs text-gray-400"><i class="bx bx-calendar"></i> Août 2024</span>
+                <span class="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full"><i class="bx bx-check-circle"></i> Visa F-1 obtenu</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Témoignage 4 - PPTQ Résidence Permanente -->
+          <div class="testimonial-card">
+            <div class="testimonial-card-inner">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white text-xl font-bold shadow-lg">F.K</div>
+                <div>
+                  <h4 class="font-bold text-lg">Fatima K.</h4>
+                  <div class="flex items-center gap-1 text-yellow-400 text-sm">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+                  </div>
+                  <p class="text-xs text-gray-400">Ingénieure • Immigration Québec</p>
+                </div>
+              </div>
+              <i class='bx bxs-quote-left text-4xl text-emerald-200 mb-3 quote-icon'></i>
+              <p class="text-gray-600 italic leading-relaxed">“Le programme PPTQ est complexe, mais NAP Consulting m'a guidée pas à pas. Évaluation Arrima, préparation du CSQ, dossier fédéral... Tout a été géré avec rigueur. J'ai reçu ma résidence permanente en 5 mois seulement. Une équipe exceptionnelle !”</p>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                <span class="text-xs text-gray-400"><i class="bx bx-calendar"></i> Mars 2025</span>
+                <span class="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full"><i class="bx bx-check-circle"></i> RP obtenue</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Témoignage 5 - PVT Canada -->
+          <div class="testimonial-card">
+            <div class="testimonial-card-inner">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center text-white text-xl font-bold shadow-lg">T.D</div>
+                <div>
+                  <h4 class="font-bold text-lg">Thomas D.</h4>
+                  <div class="flex items-center gap-1 text-yellow-400 text-sm">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+                  </div>
+                  <p class="text-xs text-gray-400">PVT • Vancouver, Canada</p>
+                </div>
+              </div>
+              <i class='bx bxs-quote-left text-4xl text-amber-200 mb-3 quote-icon'></i>
+              <p class="text-gray-600 italic leading-relaxed">“Je voulais faire un PVT au Canada mais je ne savais pas par où commencer. NAP m'a accompagné dans mon inscription au bassin IEC, la constitution du dossier et la préparation. Aujourd'hui, je profite de mon expérience à Vancouver. Merci infiniment !”</p>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                <span class="text-xs text-gray-400"><i class="bx bx-calendar"></i> Décembre 2024</span>
+                <span class="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full"><i class="bx bx-check-circle"></i> PVT obtenu</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Témoignage 6 - Regroupement familial -->
+          <div class="testimonial-card">
+            <div class="testimonial-card-inner">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center text-white text-xl font-bold shadow-lg">M.B</div>
+                <div>
+                  <h4 class="font-bold text-lg">Marie B.</h4>
+                  <div class="flex items-center gap-1 text-yellow-400 text-sm">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+                  </div>
+                  <p class="text-xs text-gray-400">Regroupement familial • France</p>
+                </div>
+              </div>
+              <i class='bx bxs-quote-left text-4xl text-pink-200 mb-3 quote-icon'></i>
+              <p class="text-gray-600 italic leading-relaxed">“Mon dossier de regroupement familial était complexe avec des justificatifs difficiles à rassembler. L'équipe de NAP Consulting a fait preuve d'une grande patience et d'un professionnalisme remarquable. Mon mari a enfin obtenu son visa ! Nous sommes tellement reconnaissants.”</p>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                <span class="text-xs text-gray-400"><i class="bx bx-calendar"></i> Février 2025</span>
+                <span class="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full"><i class="bx bx-check-circle"></i> Visa obtenu</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Boutons de navigation -->
+        <button id="prevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-all z-20 hover:scale-110">
+          <i class="bx bx-chevron-left text-2xl text-gray-600"></i>
+        </button>
+        <button id="nextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-all z-20 hover:scale-110">
+          <i class="bx bx-chevron-right text-2xl text-gray-600"></i>
+        </button>
+      </div>
+      
+      <!-- Indicateurs de pagination -->
+      <div class="flex justify-center gap-2 mt-10" id="paginationDots"></div>
+      
+      <!-- Statistiques supplémentaires -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
+        <div class="text-center p-4 rounded-2xl bg-white/60 backdrop-blur-sm">
+          <div class="text-3xl font-black text-red-500">2 340+</div>
+          <p class="text-sm text-gray-600">Clients accompagnés</p>
+        </div>
+        <div class="text-center p-4 rounded-2xl bg-white/60 backdrop-blur-sm">
+          <div class="text-3xl font-black text-blue-500">98%</div>
+          <p class="text-sm text-gray-600">Taux de satisfaction</p>
+        </div>
+        <div class="text-center p-4 rounded-2xl bg-white/60 backdrop-blur-sm">
+          <div class="text-3xl font-black text-emerald-500">4.9/5</div>
+          <p class="text-sm text-gray-600">Note moyenne</p>
+        </div>
+        <div class="text-center p-4 rounded-2xl bg-white/60 backdrop-blur-sm">
+          <div class="text-3xl font-black text-amber-500">10 ans</div>
+          <p class="text-sm text-gray-600">d'expertise</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-white"><div class="container mx-auto px-6 max-w-4xl"><h2 class="text-4xl font-black text-center mb-8">FAQ Tarifs</h2><div class="space-y-4"><div class="border rounded-2xl p-5"><button class="faq-question w-full text-left font-bold flex justify-between">Les frais indiqués incluent-ils les frais d'État ?<i class="bx bx-chevron-down"></i></button><div class="faq-answer hidden mt-2 text-gray-600">Non, nos honoraires couvrent l'accompagnement et le conseil. Les frais d'État (Campus France, CAQ, IRCC, frais consulaires) sont à régler séparément.</div></div><div class="border rounded-2xl p-5"><button class="faq-question w-full text-left font-bold flex justify-between">Puis-je bénéficier d'un paiement échelonné ?<i class="bx bx-chevron-down"></i></button><div class="faq-answer hidden mt-2 text-gray-600">Oui, nous proposons des facilités de paiement selon l'avancement du dossier. Contactez-nous pour en discuter.</div></div><div class="border rounded-2xl p-5"><button class="faq-question w-full text-left font-bold flex justify-between">Quels sont les tarifs pour un visa visiteur ou regroupement familial ?<i class="bx bx-chevron-down"></i></button><div class="faq-answer hidden mt-2 text-gray-600">Ces prestations sont facturées entre 2 500 000 et 5 000 000 FCFA selon la complexité et le nombre de personnes. Un devis personnalisé vous sera fourni après analyse.</div></div></div></div></section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
+      <div class="container mx-auto px-6 lg:px-8 relative">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <span class="bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold"><i class="fas fa-headset mr-2"></i>Contactez nos experts</span>
+          <h2 class="text-4xl md:text-5xl font-black mt-4">Parlons de votre <span class="gradient-text">projet international</span></h2>
+          <p class="text-gray-300 text-lg mt-3 max-w-2xl mx-auto">Une équipe dédiée vous accompagne 7j/7. Réponse garantie sous 24h.</p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:border-white/40 transition-all" data-aos="fade-right">
+            <div class="flex items-center gap-3 mb-6"><div class="w-12 h-12 bg-gradient-to-r from-red-500 to-blue-500 rounded-2xl flex items-center justify-center"><i class="fas fa-address-card text-xl"></i></div><h3 class="text-2xl font-bold">Informations de contact</h3></div>
+            <div class="space-y-5">
+              <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition"><div class="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center"><i class="fas fa-phone-alt text-red-400 text-lg"></i></div><div><p class="text-sm text-gray-300">Téléphone (France)</p><a href="tel:+33123456789" class="text-lg font-semibold hover:text-red-400 transition">+33 1 23 45 67 89</a></div></div>
+              <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition"><div class="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center"><i class="fab fa-whatsapp text-blue-400 text-lg"></i></div><div><p class="text-sm text-gray-300">WhatsApp (Canada)</p><a href="https://wa.me/15149998888" class="text-lg font-semibold hover:text-blue-400 transition">+1 514 999 8888</a></div></div>
+              <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition"><div class="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center"><i class="fas fa-envelope text-emerald-400 text-lg"></i></div><div><p class="text-sm text-gray-300">Email professionnel</p><a href="mailto:contact@nap.com" class="text-lg font-semibold hover:text-emerald-400 transition">contact@nap.com</a></div></div>
+              <div class="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition"><div class="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center"><i class="fas fa-map-marker-alt text-purple-400 text-lg"></i></div><div><p class="text-sm text-gray-300">Bureaux</p><p class="font-semibold">Paris | Montréal | Lyon</p></div></div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-white/20"><p class="text-sm text-gray-300 mb-4">Suivez-nous sur les réseaux</p><div class="flex gap-4"><a href="#" class="social-icon w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-gradient-to-r from-red-500 to-blue-500"><i class="fab fa-linkedin-in text-xl"></i></a><a href="#" class="social-icon w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-gradient-to-r from-red-500 to-blue-500"><i class="fab fa-facebook-f text-xl"></i></a><a href="#" class="social-icon w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-gradient-to-r from-red-500 to-blue-500"><i class="fab fa-instagram text-xl"></i></a><a href="#" class="social-icon w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-gradient-to-r from-red-500 to-blue-500"><i class="fab fa-x-twitter text-xl"></i></a><a href="#" class="social-icon w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-gradient-to-r from-red-500 to-blue-500"><i class="fab fa-youtube text-xl"></i></a></div></div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20" data-aos="fade-left">
+            <div class="flex items-center gap-3 mb-6"><div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-red-500 rounded-2xl flex items-center justify-center"><i class="fas fa-paper-plane text-xl"></i></div><h3 class="text-2xl font-bold">Envoyez votre demande</h3></div>
+            <form action="send_email.php" method="POST" id="contactForm" class="space-y-5">
+              <div class="grid md:grid-cols-2 gap-4"><input type="text" name="name" placeholder="Nom complet *" class="w-full p-3 rounded-xl bg-white/10 border border-white/20 focus:border-red-500 focus:outline-none transition text-white placeholder-gray-400" required><input type="email" name="email" placeholder="Email *" class="w-full p-3 rounded-xl bg-white/10 border border-white/20 focus:border-blue-500 focus:outline-none transition text-white placeholder-gray-400" required></div>
+              <div class="grid md:grid-cols-2 gap-4"><input type="tel" name="phone" placeholder="Téléphone" class="w-full p-3 rounded-xl bg-white/10 border border-white/20 focus:border-red-500 focus:outline-none transition text-white placeholder-gray-400"><select name="visa_type" class="w-full p-3 rounded-xl bg-white/10 border border-white/20 focus:border-blue-500 focus:outline-none transition text-white" required><option value="" disabled selected>-- Type de demande * --</option><option value="Visa Étudiant France" class="text-gray-900">🇫🇷 Visa Étudiant France</option><option value="Visa Étudiant Canada" class="text-gray-900">🇨🇦 Visa Étudiant Canada</option><option value="Visa Visiteur France" class="text-gray-900">🇫🇷 Visa Visiteur France</option><option value="Visa Visiteur Canada" class="text-gray-900">🇨🇦 Visa Visiteur Canada</option><option value="Regroupement familial France" class="text-gray-900">👨‍👩‍👧 Regroupement familial France</option><option value="Regroupement familial Canada" class="text-gray-900">👨‍👩‍👧 Regroupement familial Canada</option><option value="PPTQ - Immigration Québec" class="text-gray-900">📄 PPTQ - Immigration Québec</option><option value="PVT - Vacances-Travail" class="text-gray-900">✈️ PVT - Vacances-Travail</option><option value="Autre demande" class="text-gray-900">❓ Autre demande</option></select></div>
+              <textarea name="message" rows="3" placeholder="Décrivez votre projet (études, travail, situation familiale, etc.) *" class="w-full p-3 rounded-xl bg-white/10 border border-white/20 focus:border-red-500 focus:outline-none transition text-white placeholder-gray-400" required></textarea>
+              <div class="flex items-start gap-3"><input type="checkbox" name="consent" id="consentCheckbox" class="mt-1 w-4 h-4 accent-red-500" required><label for="consentCheckbox" class="text-xs text-gray-300">J'accepte que mes données soient traitées pour me recontacter et j'autorise NAP Consulting à étudier mon dossier. *</label></div>
+              <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-blue-500 hover:shadow-xl font-bold py-3 rounded-xl transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"><i class="fas fa-paper-plane"></i> Envoyer la demande</button>
+              <div id="formMessage" class="text-sm text-center font-medium"></div>
+              <p class="text-xs text-gray-400 text-center">* Champs obligatoires - Réponse sous 24h ouvrables</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-950 text-gray-400 py-8 text-center"><p>© 2025 NAP Consulting – 10 ans d'expertise – Tarifs transparents Canada, France, USA, Europe</p></footer>
+
+  <script>
+    AOS.init({duration:800, once:true});
+    const modal=document.getElementById('serviceModal'), modalTitle=document.getElementById('modalTitle'), modalContent=document.getElementById('modalContent');
+    function openModal(title,html){modalTitle.innerText=title; modalContent.innerHTML=html; modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow='hidden';}
+    function closeModal(){modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow='';}
+    document.querySelectorAll('.service-card, .visa-card-modern').forEach(card=>{card.addEventListener('click',(e)=>{if(e.target.closest('.service-card')||e.target.closest('.visa-card-modern')){const title=card.getAttribute('data-modal-title')||'Service'; const desc=card.getAttribute('data-modal-desc')||'Description détaillée'; openModal(title,desc);}});});
+    document.getElementById('closeModalBtn')?.addEventListener('click',closeModal);
+    document.getElementById('modalCloseFooter')?.addEventListener('click',closeModal);
+    document.getElementById('modalBackdrop')?.addEventListener('click',closeModal);
+    document.querySelectorAll('.faq-question').forEach(btn=>{btn.addEventListener('click',()=>{const ans=btn.nextElementSibling; ans.classList.toggle('hidden'); const icon=btn.querySelector('i'); if(icon){icon.classList.toggle('bx-chevron-down'); icon.classList.toggle('bx-chevron-up');}});});
+    document.getElementById('mobileMenuBtn')?.addEventListener('click',()=>document.getElementById('mobileMenuPanel').classList.toggle('hidden'));
+    const urlParams=new URLSearchParams(window.location.search);
+    const status=urlParams.get('status');
+    const msgDiv=document.getElementById('formMessage');
+    if(status==='success'){msgDiv.innerHTML='<span class="text-green-400"><i class="bx bx-check-circle"></i> Demande envoyée ! Un conseiller vous recontactera.</span>'; window.history.replaceState({},document.title,window.location.pathname); setTimeout(()=>msgDiv.innerHTML='',5000);}
+    else if(status==='error'){msgDiv.innerHTML='<span class="text-red-400"><i class="bx bx-error"></i> Erreur, réessayez</span>'; window.history.replaceState({},document.title,window.location.pathname);}
+	// Carrousel de témoignages avec défilement automatique et navigation
+    const track = document.getElementById('testimonialTrack');
+    const cards = document.querySelectorAll('.testimonial-card');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('paginationDots');
+    
+    let currentIndex = 0;
+    let cardsPerView = 1;
+    let totalSlides = cards.length;
+    let autoPlayInterval;
+    let isAutoPlaying = true;
+    
+    // Déterminer le nombre de cartes visibles selon la largeur d'écran
+    function updateCardsPerView() {
+      if (window.innerWidth >= 1024) {
+        cardsPerView = 3;
+      } else if (window.innerWidth >= 768) {
+        cardsPerView = 2;
+      } else {
+        cardsPerView = 1;
+      }
+      totalSlides = Math.ceil(cards.length / cardsPerView);
+      updateDots();
+      updateTrackPosition();
+    }
+    
+    // Mettre à jour la position du track
+    function updateTrackPosition() {
+      const slideWidth = 100 / cardsPerView;
+      const translateX = -(currentIndex * slideWidth);
+      track.style.transform = `translateX(${translateX}%)`;
+      
+      // Mettre à jour les dots actifs
+      document.querySelectorAll('.slider-dot').forEach((dot, idx) => {
+        if (idx === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+    
+    // Créer les indicateurs de pagination
+    function updateDots() {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = `slider-dot h-2 rounded-full bg-gray-300 transition-all duration-300 ${i === currentIndex ? 'active w-8' : 'w-2'}`;
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateTrackPosition();
+          resetAutoPlay();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+    
+    // Navigation suivante
+    function nextSlide() {
+      if (currentIndex < totalSlides - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0; // Boucle infinie
+      }
+      updateTrackPosition();
+      resetAutoPlay();
+    }
+    
+    // Navigation précédente
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = totalSlides - 1; // Boucle infinie
+      }
+      updateTrackPosition();
+      resetAutoPlay();
+    }
+    
+    // Réinitialiser l'autoplay
+    function resetAutoPlay() {
+      if (isAutoPlaying) {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+      }
+    }
+    
+    // Démarrer l'autoplay
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(() => {
+        nextSlide();
+      }, 5000); // Défile toutes les 5 secondes
+    }
+    
+    // Arrêter l'autoplay au survol
+    function pauseAutoPlay() {
+      if (isAutoPlaying) {
+        clearInterval(autoPlayInterval);
+      }
+    }
+    
+    // Reprendre l'autoplay quand la souris quitte
+    function resumeAutoPlay() {
+      if (isAutoPlaying) {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+      }
+    }
+    
+    // Événements
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+    });
+    
+    // Pause au survol du carrousel
+    const sliderContainer = document.querySelector('.testimonial-slider');
+    sliderContainer.addEventListener('mouseenter', pauseAutoPlay);
+    sliderContainer.addEventListener('mouseleave', resumeAutoPlay);
+    
+    // Redimensionnement
+    window.addEventListener('resize', () => {
+      updateCardsPerView();
+    });
+    
+    // Initialisation
+    updateCardsPerView();
+    startAutoPlay();
+    
+    // Ajout d'une animation AOS si disponible (optionnel)
+    if (typeof AOS !== 'undefined') {
+      AOS.refresh();
+    }
+  </script>
+</body>
+</html>
